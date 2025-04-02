@@ -3,6 +3,8 @@
 import React, {useState} from 'react'
 import Navbar from '../component/Navbar'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 
 function RegisterPage() {
 
@@ -12,6 +14,9 @@ function RegisterPage() {
     const [confirmPassword,setConfirmPassword] = useState("");
     const [error,setError] = useState("");
     const [success,setSuccess] = useState("");
+
+    const { data: session } = useSession();
+    if (session) redirect("/welcome");
 
     
 
@@ -30,7 +35,7 @@ function RegisterPage() {
 
         try {
 
-            const resCheckUser = await fetch("http://localhost:3001/register/checkUser", {
+            const resCheckUser = await fetch("http://localhost:3000/register/checkUser", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -46,7 +51,7 @@ function RegisterPage() {
                 return;
             }
 
-            const res = await fetch('http://localhost:3001/register/api', {
+            const res = await fetch('http://localhost:3000/register/api', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -86,6 +91,7 @@ function RegisterPage() {
                         {error}
                     </div>
                 )}
+
                 {success && (
                     <div className='bg-green-500 w-fit text-sm text-white py-1 px-3 rounded-md mt-2'>
                         {success}

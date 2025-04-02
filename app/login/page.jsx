@@ -1,24 +1,73 @@
 "use client"
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from '../component/Navbar'
 import Link from 'next/link'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter, redirect } from 'next/navigation'
+
+
 
 function LoginPage() {
+
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [error,setError] = useState("");
+
+    const router = useRouter();
+
+     const { data: session } = useSession();
+     useEffect(() => {
+      if (session) {
+          router.replace("welcome");
+      }
+  }, [session]);
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      try{
+
+            const res = await signIn("credentials", {
+              email, password, redirect: false
+            })
+
+            if (res.error){
+              setError("Invalid credential");
+              return;
+            }
+
+            router.replace("welcome");
+
+
+      }catch(error){
+        console.log(error)
+      }
+    }
+      
+
   return (
     <div>
         <Navbar/>
-        <diV className = 'container mx-auto py-5'>
+        <div className = 'container mx-auto py-5'>
             <h3>Login Page</h3>
             <hr className='my-3'/>
-            <form action="">
-                <input className='block bg-gray-300 p-2 my-2 rounded-md' type="/email" placeholder='Enter your email'/>
-                <input className='block bg-gray-300 p-2 my-2 rounded-md' type="/password" placeholder='Enter your password'/>
+            <form onSubmit={handleSubmit}>
+
+               {error && (
+                    <div className='bg-red-500 w-fit text-sm text-white py-1 px-3 rounded-md mt-2'>
+                        {error}
+                    </div>
+                )}
+
+
+                <input onChange={(e) => setEmail(e.target.value)} className='block bg-gray-300 p-2 my-2 rounded-md' type="email" placeholder='Enter your email'/>
+                <input onChange={(e) => setPassword(e.target.value)} className='block bg-gray-300 p-2 my-2 rounded-md' type="password" placeholder='Enter your password'/>
                 <button type='submit' className='bg-green-500 p-2 rounded-md text-white'>Sign in</button>
             </form>
             <hr className='my-3'/>
             <p>Already have and account? go to <Link className='text-blue-500 hover:underline' href="/register">Register</Link> Page</p>
-        </diV>
+        </div>
     </div>
   )
 }

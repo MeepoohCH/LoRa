@@ -1,6 +1,6 @@
 export async function getDataCombine() {
     try {
-        const res = await fetch('http://localhost:3001/node_combine/api');
+        const res = await fetch('http://localhost:3000/node_combine/api');
         if (!res.ok) {
             throw new Error('Failed to fetch data');
         }
