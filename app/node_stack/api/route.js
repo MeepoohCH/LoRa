@@ -4,8 +4,11 @@ export async function GET(request) {
   try {
     const promisePool = mysqlPool.promise();
     const [rows, fields] = await promisePool.query(
-      'SELECT * FROM `node_stack`'
+     `SELECT * FROM node_stack 
+   WHERE timestamp >= NOW() - INTERVAL 6 HOUR 
+   ORDER BY timestamp DESC`
     );
+    
 
     return new Response(JSON.stringify(rows), {
       status: 200,

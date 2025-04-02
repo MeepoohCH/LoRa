@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
-import { getDataStack } from "./data";
+import { getDataCombine } from "./data";
 
-export default function NodeStackPage() {
+export default function CombinePage() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedTime, setSelectedTime] = useState("5"); // Default to last 5 minutes
@@ -13,7 +13,7 @@ export default function NodeStackPage() {
   const fetchData = async () => {
     setLoading(true); // Start loading
     try {
-      const dataFromAPI = await getDataStack(); // Fetch all data from API
+      const dataFromAPI = await getDataCombine(); // Fetch all data from API
       console.log("Data received:", dataFromAPI); // Debug the data received
 
       // Filter the data based on the selected time range

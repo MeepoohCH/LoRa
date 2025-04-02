@@ -1,10 +1,10 @@
 const mysql = require('mysql2')
 const  mysqlPool = mysql.createPool({
-    host: '54.151.250.200',
-    user: 'admin_db',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
     password: 'dbAdmin#12345',
-    database: 'watermark_db',
-    port: 3306,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_DB_PORT,
     waitForConnections: true,
     connectionLimit: 10,
 })

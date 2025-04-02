@@ -1,7 +1,7 @@
-import {getData} from './data'
+import {getDataProperties} from './data'
 
-export default async function node_propertiesPage() {
-    const data = await getData()
+export default async function PropertiesPage() {
+    const data = await getDataProperties()
     console.log(data)
     return (
       <div>
