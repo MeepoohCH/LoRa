@@ -1,27 +1,28 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema(
     {
         name: {
             type: String,
-            require: true,
+            required: true,  
         },
         email: {
             type: String,
-            require: true,
+            required: true,
+            unique: true,  // ป้องกันอีเมลซ้ำ
         },
         password: {
             type: String,
-            require: true,
+            required: true,
         },
         role: {
             type: String,
-            require: false,
-            default: "user"      
+            enum: ["user", "admin"], // กำหนดค่า role ที่อนุญาต
+            default: "user",  
         }
     },
-         {timestamps: true}
-)
+    { timestamps: true }
+);
 
 const User = mongoose.models.User || mongoose.model("User", userSchema);
 export default User;

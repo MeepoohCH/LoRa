@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getDataCombine } from "./data";
+import { getData } from "./getData";
 
-export default function CombinePage() {
+export default function DataPage() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedTime, setSelectedTime] = useState("5");
@@ -12,7 +12,7 @@ export default function CombinePage() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const dataFromAPI = await getDataCombine();
+      const dataFromAPI = await getData();
       console.log("Data received:", dataFromAPI);
       const filtered = filterDataByTime(dataFromAPI, selectedTime);
       setFilteredData(filtered);

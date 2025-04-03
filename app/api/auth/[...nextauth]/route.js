@@ -28,7 +28,7 @@ const authOptions = {
                     return null;
                 }
 
-                return user;
+                return { id: user.id, name: user.name, email: user.email, role: user.role };
 
             }catch(error){
                 console.log("Error: ",error)
@@ -41,6 +41,24 @@ const authOptions = {
       session: {
         strategy: "jwt",
       },
+
+      callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.role = user.role; // เพิ่ม role ใน JWT
+            }
+            console.log("JWT Callback: ", token);
+            return token;
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.role = token.role; // ให้ session มี role ด้วย
+            }
+            console.log("Session Callback: ", session);
+            return session;
+        }
+    },
+
 
       secret: process.env.NEXTAUTH_SECRET,
       pages: {
