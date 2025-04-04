@@ -21,7 +21,7 @@ function Navbar({ session }) {
   }, [router.asPath]); // เมื่อ path เปลี่ยนจะ update state
 
   return (
-    <nav className="py-1 px-4 shadow-md bg-[#ffffff]">
+    <nav className="py-2 px-4 shadow-md bg-[#ffffff]">
       <div className="container mx-auto flex justify-between items-center ">
         {/* โลโก้มิตรผล */}
         <div>
