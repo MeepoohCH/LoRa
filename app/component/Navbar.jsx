@@ -21,7 +21,7 @@ function Navbar({ session }) {
   }, [router.asPath]); // เมื่อ path เปลี่ยนจะ update state
 
   return (
-    <nav className="py-2 px-4 shadow-md bg-[#ffffff]">
+    <nav className="py-1 px-4 shadow-md bg-[#ffffff]">
       <div className="container mx-auto flex justify-between items-center ">
         {/* โลโก้มิตรผล */}
         <div>
@@ -34,7 +34,8 @@ function Navbar({ session }) {
           </Link>
         </div>
 
-        {session && (
+           {/* เมนู */}
+           {session && (
           <div className="hidden lg:flex items-center space-x-12 bg-[#ffffff] rounded-3xl py-4 px-6">
             <ul className="flex space-x-12 text-lg text-[#002e6d]">
               {[
@@ -46,14 +47,19 @@ function Navbar({ session }) {
                 const isActive = pathname === item.path;  // ใช้ pathname เพื่อเช็คว่าตรงกับ path หรือไม่
                 return (
                   <li key={item.path}>
-                    <Link
-                      href={item.path}
-                      className={`flex items-center space-x-2 px-4 py-2 rounded-full transition duration-200 ease-in-out ${
-                        isActive
-                          ? "bg-[#002e6d] text-white border-2 border-[#002e6d] shadow-md"
-                          : "hover:bg-[#002e6d] hover:text-[#ffffff] text-[#002e6d] hover:border hover:border-[#007BB5] transition-all"
-                      }`}
-                    >
+                   <Link
+  href={item.path}
+  className={`flex items-center space-x-2 px-4 py-2 rounded-full transition duration-200 ease-in-out ${
+    // ถ้าเป็นหน้า active (ตรงกับ pathname)
+    isActive
+      ? item.name === "Valve Control"
+        ? "bg-orange-500 text-[#ffffff] hover:border-[#FFCC00]" // ถ้า active ให้เป็น bg-orange text-white
+        : "bg-[#002e6d] text-[#ffffff] border-2 border-[#002e6d] shadow-md" // กรณี active อื่นๆ
+      : item.name === "Valve Control"
+      ? "bg-yellow-300 text-[#002e6d] hover:border-[#FFCC00]" // ถ้าไม่ active ให้เป็น bg-yellow
+      : "hover:bg-[#002e6d] hover:text-[#ffffff] text-[#002e6d] hover:border hover:border-[#007BB5] transition-all"
+  }`}
+>
                       {item.icon}
                       <span>{item.name}</span>
                     </Link>

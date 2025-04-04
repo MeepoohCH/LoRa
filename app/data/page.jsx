@@ -71,7 +71,7 @@ export default function DataPage() {
 
   return (
     <div className="p-6 max-w-3xl mx-auto bg-white shadow-lg rounded-lg">
-      <h1 className="text-2xl font-bold text-[#007BB5] mb-4">Node Combine</h1>
+      <h1 className="text-2xl font-bold text-[#007BB5] mb-4">Data Node</h1>
 
       {/* Dropdown */}
       <div className="my-4">

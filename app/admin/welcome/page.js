@@ -44,7 +44,7 @@ function WelcomeAdminPage() {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="/dashboard" className="bg-[#00aeef] hover:bg-[#007BB5] text-white py-3 px-6 rounded-lg text-lg transition shadow-md">
+                <a href="/dashboard" className="bg-[#002e6d] hover:bg-[#007BB5] text-white py-3 px-6 rounded-lg text-lg transition shadow-md">
                     Go to Dashboard
                 </a>
                 <a href="/settings" className="bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg text-lg transition shadow-md">

@@ -51,7 +51,7 @@ function LoginPage() {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
     <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8 ">
-        <h3 className="text-2xl font-semibold text-center mb-4">Login Page</h3>
+        <h3 className="text-2xl font-semibold text-center mb-4">Login</h3>
         <hr className="mb-4" />
         <form onSubmit={handleSubmit} className="space-y-4">
             {error && (

@@ -80,7 +80,7 @@ function RegisterPage() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
     <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
-        <h3 className="text-2xl font-semibold text-center mb-6">Register Page</h3>
+        <h3 className="text-2xl font-semibold text-center mb-6">Register</h3>
         <hr className="mb-6" />
         <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
